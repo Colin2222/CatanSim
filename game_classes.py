@@ -5,10 +5,12 @@ class Element:
 
     # list of icon objects to be drawn for the element
     icons = []
+    ownIcons = []
 
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.ownIcons = []
 
 class Icon:
     # string location of image in file explorer
@@ -47,8 +49,13 @@ class ResourceTile(Element):
 
     def __init__(self, x, y):
         Element.__init__(self, x, y)
-        self.icons.append(Icon("images/hexagon_empty.png", x, y))
+        icon_insertion = Icon("images/hexagon_empty.png", x, y)
+        self.icons.append(icon_insertion)
+        self.ownIcons.append(icon_insertion)
         self.edges = [None for i in range(6)]
+
+    def GetEdges(self):
+        return self.edges
 
 class ResourceTileNumber:
     # integer value of the dice roll associated with the resource tile (2-12)
@@ -68,7 +75,9 @@ class ResourceTileEdge(Element):
         Element.__init__(self, x, y)
         self.adjacent_tiles = []
         self.adjacent_edges = []
-        self.icons.append(Icon("images/placeholder_6.png", x, y))
+        icon_insertion = Icon("images/placeholder_6.png", x, y)
+        self.icons.append(icon_insertion)
+        self.ownIcons.append(icon_insertion)
 
 class ResourceTileIntersection:
     # reference to a settlement or city built on this intersection

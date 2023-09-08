@@ -41,7 +41,7 @@ def load_board(board: CatanBoard, setup_file_location, baseX, baseY):
                 edge4 = ResourceTileEdge(baseX - 3 + 54 + 104 * tile_x, baseY + 48 + 74 * tile_y)
             if tile_x < width:
                 board.resource_tiles[tile_y][tile_x].edges[4] = edge4
-            if tile_x - 1 > 0:
+            if tile_x > 0:
                 board.resource_tiles[tile_y][tile_x - 1].edges[1] = edge4
 
         for tile_x in range(width):
